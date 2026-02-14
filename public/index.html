@@ -6,8 +6,16 @@
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
-    <button class="buttonOption" data-action="doom">Doom</button>
-    <button class="buttonOption" data-action="shutdown">Shutdown</button>
+    <div class="screen">
+      <div class="innerScreen">
+        <button class="buttonOption" data-action="doom">Doom</button>
+        <button class="buttonOption" data-action="wiki">Wiki</button>
+        <button class="buttonOption" data-action="reddit" onclick="location.href = '/reddit'">
+          Reddit
+        </button>
+        <button class="buttonOption" data-action="shutdown">Shutdown</button>
+      </div>
+    </div>
 
     <script src="/menu.js"></script>
   </body>

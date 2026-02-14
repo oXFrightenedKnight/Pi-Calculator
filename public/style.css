@@ -4,7 +4,9 @@
   font-weight: normal;
   font-style: normal;
 }
-
+* {
+  box-sizing: border-box;
+}
 html,
 body {
   margin: 0;
@@ -15,14 +17,14 @@ body {
 }
 
 body {
-  background-color: rgba(213, 235, 215, 1); /* тёмно-зелёный LCD */
-  color: rgba(2, 8, 86, 1);
+  background-color: rgba(118, 140, 117, 1);
+  color: rgba(41, 45, 57, 1);
   font-family: "LCD", monospace;
+  text-shadow: rgba(57, 70, 61, 1);
+
   display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: start;
-  text-shadow: rgba(110, 115, 179, 1);
+  justify-content: center;
+  align-items: center;
 }
 
 .buttonOption {
@@ -30,10 +32,10 @@ body {
   justify-content: start;
   align-items: center;
   padding: 20px;
-  color: rgba(2, 8, 86, 1);
-  text-shadow: 2px 0px 0px #6e73b3;
+  color: rgba(41, 45, 57, 1);
+  text-shadow: 2px 0px 0px rgba(57, 70, 61, 1);
   font-family: "LCD", monospace;
-  width: 100vw;
+  width: 100%;
   background-color: transparent;
   height: 100px;
   font-size: 56px;
@@ -41,7 +43,180 @@ body {
 }
 
 .buttonOption.active {
-  color: rgba(213, 235, 215, 1);
-  background-color: rgba(2, 8, 86, 1);
-  box-shadow: 0px 0px 1px 2px #6e73b3;
+  color: rgba(118, 140, 117, 1);
+  background-color: rgba(41, 45, 57, 1);
+  box-shadow: 0px 0px 1px 2px rgba(57, 70, 61, 1);
+}
+
+.screen {
+  width: 90vw;
+  height: 92vh;
+  padding: 3vh 5vh 0vh;
+  background-color: rgba(118, 140, 117, 1);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.innerScreen {
+  background-color: rgba(106, 129, 111, 1);
+
+  height: 100%; /* <-- добавь */
+  min-height: 0; /* <-- КРИТИЧНО для flex scroll */
+  width: 100%;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.innerScreen::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+.innerScreen {
+  scrollbar-width: none;
+}
+
+.redirect {
+  text-decoration: none;
+}
+
+.centeredSearch {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.redditInput {
+  border: none;
+  font-family: "LCD", monospace;
+  font-size: 10vh;
+  width: 70%;
+  height: 20vh;
+  background-color: rgba(41, 45, 57, 1);
+  color: rgba(106, 129, 111, 1);
+}
+.redditInput:focus {
+  outline: none;
+  box-shadow: none;
+}
+.redditInput::placeholder {
+  color: rgba(106, 129, 111, 1);
+}
+.r-prefix {
+  font-size: 18vh;
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: rgba(41, 45, 57, 1);
+  text-shadow: 1px 0px 0px rgba(57, 70, 61, 1);
+  font-family: "LCD", monospace;
+  width: 100%;
+  background-color: transparent;
+  font-size: 6vh;
+  border-bottom: 1px solid rgba(41, 45, 57, 1);
+  max-height: 85vh;
+  overflow: hidden;
+}
+
+.post.active {
+  color: rgba(106, 129, 111, 1);
+  background-color: rgba(41, 45, 57, 1);
+  box-shadow: 0px 0px 1px 2px rgba(57, 70, 61, 1);
+}
+
+.post.active p {
+  color: rgba(106, 129, 111, 1);
+  text-shadow: 1px 0px 0px rgba(57, 70, 61, 1);
+}
+
+.nextPageButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12vh;
+  color: rgba(41, 45, 57, 1);
+  width: 100%;
+  height: 10vh;
+}
+
+.nextPageButton.active {
+  font-size: 10vh;
+  color: rgba(106, 129, 111, 1);
+  text-shadow: 1px 0px 0px rgba(57, 70, 61, 1);
+  background-color: rgba(41, 45, 57, 1);
+  box-shadow: 0px 0px 1px 2px rgba(57, 70, 61, 1);
+}
+
+.noPostMsg {
+  font-size: 10vh;
+  color: rgba(41, 45, 57, 1);
+}
+
+.noPostMsg.hidden {
+  display: none;
+}
+
+.display_img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2vw;
+  max-height: 50vh;
+  height: 50vh;
+  width: 100%;
+  padding-bottom: 5vh;
+}
+.display_img img {
+  max-width: 40%;
+  width: auto;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+}
+.display_img p {
+  font-size: 6vh;
+  max-width: 50%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 6; /* ← сколько строк */
+  line-clamp: 6;
+  overflow: hidden;
+  color: rgba(41, 45, 57, 1);
+  text-shadow: 1px 0px 0px rgba(57, 70, 61, 1);
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.postContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  max-height: 100%;
+  overflow: auto;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.expandedTitle {
+  font-size: 6vh;
+  max-width: 90%;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3; /* ← вот тут магия */
+  line-clamp: 3;
+  overflow: hidden;
 }

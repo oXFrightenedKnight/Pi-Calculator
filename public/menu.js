@@ -33,4 +33,8 @@ document.addEventListener("keydown", (e) => {
   }
 
   items[index].classList.add("active");
+  items[index].scrollIntoView({
+    block: "nearest",
+    behavior: "instant",
+  });
 });
